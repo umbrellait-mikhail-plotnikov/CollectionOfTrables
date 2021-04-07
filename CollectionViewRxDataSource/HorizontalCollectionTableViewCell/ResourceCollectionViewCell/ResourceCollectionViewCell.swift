@@ -9,6 +9,13 @@ import UIKit
 
 class ResourceCollectionViewCell: UICollectionViewCell {
 
+    var title: String! {
+        didSet {
+            label.text = title
+        }
+    }
+    @IBOutlet weak var label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         print("CollectionCell awake!")

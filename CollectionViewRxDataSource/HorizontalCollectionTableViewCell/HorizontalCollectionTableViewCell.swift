@@ -10,14 +10,19 @@ import UIKit
 
 class HorizontalCollectionTableViewCell: UITableViewCell {
 
-    
+    let disposedBag = DisposeBag()
     @IBOutlet weak var collectionView: UICollectionView!
     
-    func configure() -> UITableViewCell {
-        self.backgroundColor = .brown
-        self.collectionView.backgroundColor = .blue
-        return self
+    var data: GridViewModel?  {
+        didSet {
+            collectionView.register(UINib(nibName: "ResourceCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ResourceCollectionViewCell")
+            data?.titles.bind(to: collectionView.rx.items(cellIdentifier: "ResourceCollectionViewCell", cellType: ResourceCollectionViewCell.self)) { index, title, cell in
+                cell.title = title
+            
+            }.disposed(by: disposedBag)
+        }
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -16,24 +16,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="126" height="119"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPs-mf-ywP">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bPs-mf-ywP">
                         <rect key="frame" x="0.0" y="0.0" width="126" height="119"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GY-Ui-ipu">
+                                <rect key="frame" x="42" y="52" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="119" id="1DL-jG-yJo"/>
-                            <constraint firstAttribute="width" constant="126" id="i1b-Rb-DUg"/>
-                        </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <constraints>
-                <constraint firstItem="bPs-mf-ywP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="CjR-8H-N6h"/>
-                <constraint firstAttribute="bottom" secondItem="bPs-mf-ywP" secondAttribute="bottom" id="nCx-YH-vTu"/>
-                <constraint firstAttribute="trailing" secondItem="bPs-mf-ywP" secondAttribute="trailing" id="q5g-73-djl"/>
-                <constraint firstItem="bPs-mf-ywP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="vV3-lA-oUF"/>
-            </constraints>
             <size key="customSize" width="126" height="119"/>
+            <connections>
+                <outlet property="label" destination="3GY-Ui-ipu" id="4ZH-o1-gGn"/>
+            </connections>
             <point key="canvasLocation" x="153.62318840579712" y="132.92410714285714"/>
         </collectionViewCell>
     </objects>

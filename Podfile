@@ -7,7 +7,9 @@ target 'CollectionViewRxDataSource' do
   pod "RxSwift"
   pod "RxCocoa"
   pod "RxDataSources"
-  pod "RxAlamofire" 
+  pod "RxAlamofire"
+  pod "ObjectMapper"
+  pod "Kingfisher"
   # Pods for CollectionViewRxDataSource
 
 end

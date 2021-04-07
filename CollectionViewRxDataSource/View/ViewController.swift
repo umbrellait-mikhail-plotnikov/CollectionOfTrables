@@ -17,32 +17,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.isScrollEnabled = true
+        
+        tableView.register(UINib(nibName: "HorizontalCollectionTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell1")
         
         viewModel = ViewModel()
         
-        viewModel!.addNewSource(newSource: "Source1")
-        viewModel!.addNewSource(newSource: "Source2")
+        viewModel?.items
+            .bind(to: tableView.rx.items(dataSource: viewModel!.dataSource))
+            .disposed(by: disposeBag)
         
-        tableView.register(UINib(nibName: "HorizontalCollectionTableViewCell", bundle: nil), forCellReuseIdentifier: "Cells")
-        
-        viewModel?.sourcesArray.bind(to: tableView.rx.items) { (table, row, element) in
-            guard let cell = table.dequeueReusableCell(withIdentifier: "Cells") as? HorizontalCollectionTableViewCell else {fatalError()}
-            //Мой первый вариант
-            //cell.collectionView.register(UINib(nibName: "ResourceCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
-//            self.viewModel?.randomArray.bind(to: cell.collectionView.rx.items(cellIdentifier: "CollectionCell", cellType: ResourceCollectionViewCell.self)) { row, collectionData, cell in
-//
-//            }.disposed(by: self.disposeBag)
-//            return cell
-            
-//            Мой второй вариант
-//            Оба не работают, collectionView не отображается :(
-            return cell.configure()
-            
-        }
-        .disposed(by: disposeBag)
-        // Do any additional setup after loading the view.
     }
-
-
 }
+
 

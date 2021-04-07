@@ -17,10 +17,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="epP-GH-qI0">
-                        <rect key="frame" x="16" y="11" width="288" height="227"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="epP-GH-qI0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E4k-F3-pMy">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="E4k-F3-pMy">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -29,12 +30,6 @@
                     </collectionView>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBlueColor"/>
-                <constraints>
-                    <constraint firstItem="epP-GH-qI0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="RM8-aF-5f1"/>
-                    <constraint firstItem="epP-GH-qI0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="p5d-jT-yrY"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="epP-GH-qI0" secondAttribute="bottom" id="qMV-7H-MmK"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="epP-GH-qI0" secondAttribute="trailing" id="wtC-Sa-qjw"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
