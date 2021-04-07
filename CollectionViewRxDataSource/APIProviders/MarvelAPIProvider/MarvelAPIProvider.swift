@@ -16,9 +16,9 @@ struct APIKey {
     let privateKey: String!
 }
 
-final class APIProvider {
+final class MarvelAPIProvider: APIProviderProtocol {
     
-    static let shared = APIProvider()
+    static let shared = MarvelAPIProvider()
     
     private var keys: APIKey?
     private let marvelBaseURL = "https://gateway.marvel.com/v1/public"

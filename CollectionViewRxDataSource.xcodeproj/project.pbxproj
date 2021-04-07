@@ -26,6 +26,7 @@
 		B34DE7A0261DDA1100D8176E /* MarvelComics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE79F261DDA1100D8176E /* MarvelComics.swift */; };
 		B34DE7A3261DE77A00D8176E /* MarvelModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE7A2261DE77A00D8176E /* MarvelModelProtocol.swift */; };
 		B34DE7A6261DE78C00D8176E /* MarvelCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE7A5261DE78C00D8176E /* MarvelCreators.swift */; };
+		B34DE7B4261E08FF00D8176E /* APIProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B34DE79F261DDA1100D8176E /* MarvelComics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelComics.swift; sourceTree = "<group>"; };
 		B34DE7A2261DE77A00D8176E /* MarvelModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelModelProtocol.swift; sourceTree = "<group>"; };
 		B34DE7A5261DE78C00D8176E /* MarvelCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCreators.swift; sourceTree = "<group>"; };
+		B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProviderProtocol.swift; sourceTree = "<group>"; };
 		E6B03D91AC39DBD35FB06ACC /* Pods_CollectionViewRxDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollectionViewRxDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				B34DE77B261DD75200D8176E /* MarvelAPIProvider.swift */,
+				B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */,
 			);
 			path = MarvelAPIProvider;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				B34DE7A3261DE77A00D8176E /* MarvelModelProtocol.swift in Sources */,
 				B34D5EC5261D987800D6F3B9 /* ViewController.swift in Sources */,
 				B34D5ED7261D990800D6F3B9 /* HorizontalCollectionTableViewCell.swift in Sources */,
+				B34DE7B4261E08FF00D8176E /* APIProviderProtocol.swift in Sources */,
 				B34DE79A261DD8D800D8176E /* MarvelCharacters.swift in Sources */,
 				B34DE7A6261DE78C00D8176E /* MarvelCreators.swift in Sources */,
 				B34DE77C261DD75200D8176E /* MarvelAPIProvider.swift in Sources */,

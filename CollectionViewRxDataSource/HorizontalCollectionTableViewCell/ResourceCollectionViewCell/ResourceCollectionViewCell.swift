@@ -12,6 +12,7 @@ class ResourceCollectionViewCell: UICollectionViewCell {
     var title: String! {
         didSet {
             label.text = title
+            label.sizeToFit()
         }
     }
     @IBOutlet weak var label: UILabel!

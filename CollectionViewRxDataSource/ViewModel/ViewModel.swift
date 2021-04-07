@@ -23,7 +23,8 @@ class ViewModel {
     
     var items = BehaviorRelay<[TableViewSection]>(value: [
         .GridSection(items: [
-            .GridTableViewItem(titles: ["1", "2", "3", "4", "5"]),
+            .GridTableViewItem(titles: ["Тут", "Будут", "Изображения", "Героев", "(надеюсь)"]),
+            .GridTableViewItem(titles: ["Тут", "Будут", "Названия", "Комисков"]),
             .TableViewCellItem(titles: ["1", "2", "3", "4", "5"])
         ])
     ])
