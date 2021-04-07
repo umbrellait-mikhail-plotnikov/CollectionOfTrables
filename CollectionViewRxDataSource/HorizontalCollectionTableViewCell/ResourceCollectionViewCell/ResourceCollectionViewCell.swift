@@ -17,6 +17,11 @@ class ResourceCollectionViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var label: UILabel!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         print("CollectionCell awake!")

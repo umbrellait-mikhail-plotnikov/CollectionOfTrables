@@ -25,7 +25,10 @@ class ViewModel {
         .GridSection(items: [
             .GridTableViewItem(titles: ["Тут", "Будут", "Изображения", "Героев", "(надеюсь)"]),
             .GridTableViewItem(titles: ["Тут", "Будут", "Названия", "Комисков"]),
-            .TableViewCellItem(titles: ["1", "2", "3", "4", "5"])
+            .TableViewCellItem(title: "1"),
+            .TableViewCellItem(title: "2"),
+            .TableViewCellItem(title: "3"),
+            .TableViewCellItem(title: "4")
         ])
     ])
     
@@ -34,7 +37,7 @@ class ViewModel {
 
 enum TableViewItem {
     case GridTableViewItem(titles: [String])
-    case TableViewCellItem(titles: [String])
+    case TableViewCellItem(title: String)
 }
 
 enum TableViewSection {
@@ -87,14 +90,11 @@ struct MyDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? HorizontalCollectionTableViewCell else {fatalError()}
                 cell.data = GridViewModel(titles: titles)
                 return cell
-            case let .TableViewCellItem(titles):
+            case let .TableViewCellItem(title):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as? UITableViewCell else {fatalError()}
-                cell.textLabel?.text = titles.first
+                cell.textLabel?.text = title
                 return cell
             }
-            
-        }, titleForHeaderInSection: { dataSource, index in
-            return dataSource.sectionModels[index].header
         })
     }
 }

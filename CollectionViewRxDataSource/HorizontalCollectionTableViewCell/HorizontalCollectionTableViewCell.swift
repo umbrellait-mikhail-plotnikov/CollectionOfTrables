@@ -29,6 +29,13 @@ class HorizontalCollectionTableViewCell: UITableViewCell {
         print("bam")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        collectionView.delegate = nil
+        collectionView.dataSource = nil
+    }
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
