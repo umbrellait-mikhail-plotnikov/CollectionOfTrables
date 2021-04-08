@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ResourceCollectionViewCell: UICollectionViewCell {
+class ImageViewCell: UICollectionViewCell {
 
-    var title: String! {
+    var image: String! {
         didSet {
-            label.text = title
-            label.sizeToFit()
+            label.text = image
+            
         }
     }
     @IBOutlet weak var label: UILabel!
@@ -24,7 +24,6 @@ class ResourceCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("CollectionCell awake!")
         
         // Initialization code
     }

@@ -4,7 +4,7 @@
 //
 //  Created by Mikhail Plotnikov on 07.04.2021.
 //
-
+import UIKit
 import Foundation
 import ObjectMapper
 import RxSwift
@@ -23,8 +23,8 @@ class ViewModel {
     
     var items = BehaviorRelay<[TableViewSection]>(value: [
         .GridSection(items: [
-            .GridTableViewItem(titles: ["Тут", "Будут", "Изображения", "Героев", "(надеюсь)"]),
-            .GridTableViewItem(titles: ["Тут", "Будут", "Названия", "Комисков"]),
+            .GridTableViewItem(items: ["Тут", "Будут", "Комиксы", "Про", "Героев"]),
+            .GridTableViewItem(items: [UIImage(), UIImage(), UIImage(), UIImage()]),
             .TableViewCellItem(title: "1"),
             .TableViewCellItem(title: "2"),
             .TableViewCellItem(title: "3"),
@@ -36,7 +36,7 @@ class ViewModel {
 }
 
 enum TableViewItem {
-    case GridTableViewItem(titles: [String])
+    case GridTableViewItem(items: [Any])
     case TableViewCellItem(title: String)
 }
 
@@ -71,14 +71,6 @@ extension TableViewSection: SectionModelType {
     }
 }
 
-struct GridViewModel {
-    let titles = BehaviorRelay<[String]>(value: [])
-    
-    init(titles: [String]) {
-        self.titles.accept(titles)
-    }
-}
-
 struct MyDataSource {
     typealias DataSource = RxTableViewSectionedReloadDataSource
     
@@ -86,12 +78,18 @@ struct MyDataSource {
         return .init (configureCell: { (dataSource, tableView, indexPath, item) -> UITableViewCell in
             
             switch dataSource[indexPath] {
-            case let .GridTableViewItem(titles):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? HorizontalCollectionTableViewCell else {fatalError()}
-                cell.data = GridViewModel(titles: titles)
+            case let .GridTableViewItem(items):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "GridCell", for: indexPath) as? GridViewCell else { fatalError() }
+                if let images = items as? [UIImage] {
+                    cell.viewModel = ImageGridViewModel(images: images)
+                } else if let comicsTitle = items as? [String] {
+                    cell.viewModel = ComicsGridViewModel(comicsTitle: comicsTitle)
+                } else {fatalError("Unknown title")}
+                
                 return cell
+            
             case let .TableViewCellItem(title):
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as? UITableViewCell else {fatalError()}
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
                 cell.textLabel?.text = title
                 return cell
             }

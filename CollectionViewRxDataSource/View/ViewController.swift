@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.isScrollEnabled = true
         
-        tableView.register(UINib(nibName: "HorizontalCollectionTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell1")
+        tableView.register(UINib(nibName: "GridViewCell", bundle: nil), forCellReuseIdentifier: "GridCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         viewModel = ViewModel()
         
