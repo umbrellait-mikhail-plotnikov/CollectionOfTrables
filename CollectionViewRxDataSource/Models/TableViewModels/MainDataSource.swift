@@ -18,17 +18,17 @@ struct MainDataSource {
             switch dataSource[indexPath] {
             case let .GridTableViewItem(items):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "GridCell", for: indexPath) as? GridViewCell else { fatalError() }
-                if let images = items as? [UIImage] {
-                    cell.viewModel = ImageGridViewModel(images: images)
+                if let images = items as? [URL] {
+                    cell.viewModel = ImageGridViewModel(imagesURL: images)
                 } else if let comicsTitle = items as? [String] {
                     cell.viewModel = ComicsGridViewModel(comicsTitle: comicsTitle)
                 } else {fatalError("Unknown title")}
                 
                 return cell
             
-            case let .TableViewCellItem(title):
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-                cell.textLabel?.text = title
+            case let .TableViewCellItem(items):
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreatorViewCell", for: indexPath) as? CreatorViewCell else { fatalError() }
+                cell.creator = items
                 return cell
             }
         })

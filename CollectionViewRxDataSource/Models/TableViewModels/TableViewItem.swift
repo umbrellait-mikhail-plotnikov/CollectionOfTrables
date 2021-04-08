@@ -9,5 +9,5 @@ import Foundation
 
 enum TableViewItem {
     case GridTableViewItem(items: [Any])
-    case TableViewCellItem(title: String)
+    case TableViewCellItem(items: Creator)
 }

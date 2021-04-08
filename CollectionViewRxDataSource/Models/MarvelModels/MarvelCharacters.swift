@@ -9,13 +9,15 @@ import Foundation
 import ObjectMapper
 
 struct Thumbnail {
-    var path: String!
-    var ext: String!
+    var path: String
+    var ext: String
+    
+    func toString() -> String {
+        return "\(path).\(ext)"
+    }
 }
 
 struct MarvelCharacters: Mappable, MarvelModel {
-    
-    
     
     init?(map: Map) {
         

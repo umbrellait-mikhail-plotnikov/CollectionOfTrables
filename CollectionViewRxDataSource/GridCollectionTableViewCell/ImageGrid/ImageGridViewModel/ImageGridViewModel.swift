@@ -11,7 +11,7 @@ import RxCocoa
 struct ImageGridViewModel: GridViewModelProtocol {
     let data = BehaviorRelay<[Any]>(value: [])
     
-    init(images: [UIImage]) {
-        self.data.accept(images)
+    init(imagesURL: [URL]) {
+        self.data.accept(imagesURL)
     }
 }

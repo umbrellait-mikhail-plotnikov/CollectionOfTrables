@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         tableView.isScrollEnabled = true
         
         tableView.register(UINib(nibName: "GridViewCell", bundle: nil), forCellReuseIdentifier: "GridCell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UINib(nibName: "CreatorViewCell", bundle: nil), forCellReuseIdentifier: "CreatorViewCell")
         
         viewModel = MainViewModel(api: MarvelAPIProvider.shared)
         

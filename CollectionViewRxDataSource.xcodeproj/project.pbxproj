@@ -20,6 +20,8 @@
 		B3490092261EEA2600E75B07 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3490091261EEA2600E75B07 /* TableViewSection.swift */; };
 		B349009A261EEA6400E75B07 /* TableViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3490099261EEA6400E75B07 /* TableViewItem.swift */; };
 		B349009E261EEACE00E75B07 /* IdentifiableTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B349009D261EEACE00E75B07 /* IdentifiableTypeProtocol.swift */; };
+		B34900A9261F0EC700E75B07 /* CreatorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34900A7261F0EC700E75B07 /* CreatorViewCell.swift */; };
+		B34900AA261F0EC700E75B07 /* CreatorViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B34900A8261F0EC700E75B07 /* CreatorViewCell.xib */; };
 		B34D5EC1261D987800D6F3B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D5EC0261D987800D6F3B9 /* AppDelegate.swift */; };
 		B34D5EC3261D987800D6F3B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D5EC2261D987800D6F3B9 /* SceneDelegate.swift */; };
 		B34D5EC5261D987800D6F3B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34D5EC4261D987800D6F3B9 /* ViewController.swift */; };
@@ -53,6 +55,8 @@
 		B3490091261EEA2600E75B07 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
 		B3490099261EEA6400E75B07 /* TableViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewItem.swift; sourceTree = "<group>"; };
 		B349009D261EEACE00E75B07 /* IdentifiableTypeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableTypeProtocol.swift; sourceTree = "<group>"; };
+		B34900A7261F0EC700E75B07 /* CreatorViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorViewCell.swift; sourceTree = "<group>"; };
+		B34900A8261F0EC700E75B07 /* CreatorViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatorViewCell.xib; sourceTree = "<group>"; };
 		B34D5EBD261D987800D6F3B9 /* CollectionViewRxDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewRxDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34D5EC0261D987800D6F3B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B34D5EC2261D987800D6F3B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +197,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		B34900AC261F0ECB00E75B07 /* CreatorViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B34900A7261F0EC700E75B07 /* CreatorViewCell.swift */,
+				B34900A8261F0EC700E75B07 /* CreatorViewCell.xib */,
+			);
+			path = CreatorViewCell;
+			sourceTree = "<group>";
+		};
 		B34D5EB4261D987700D6F3B9 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +232,7 @@
 				B3490096261EEA5500E75B07 /* Models */,
 				B31D951A261D9C1500AAB8F9 /* MainViewModel */,
 				B31D9515261D9C0300AAB8F9 /* View */,
+				B34900AC261F0ECB00E75B07 /* CreatorViewCell */,
 				B34D5EDA261D990E00D6F3B9 /* GridCollectionTableViewCell */,
 				B34DE7AA261DE86700D8176E /* APIProviders */,
 				B34D5EC9261D987A00D6F3B9 /* Assets.xcassets */,
@@ -351,6 +365,7 @@
 				B31D9529261D9F8200AAB8F9 /* ImageViewCell.xib in Resources */,
 				B34D5ECA261D987A00D6F3B9 /* Assets.xcassets in Resources */,
 				B34D5EC8261D987800D6F3B9 /* Main.storyboard in Resources */,
+				B34900AA261F0EC700E75B07 /* CreatorViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +435,7 @@
 				B3490081261EE0DB00E75B07 /* GridViewModelProtocol.swift in Sources */,
 				B34D5EC1261D987800D6F3B9 /* AppDelegate.swift in Sources */,
 				B3490077261EDFF000E75B07 /* ComicsGridViewModel.swift in Sources */,
+				B34900A9261F0EC700E75B07 /* CreatorViewCell.swift in Sources */,
 				B31D9528261D9F8200AAB8F9 /* ImageViewCell.swift in Sources */,
 				B34DE7A0261DDA1100D8176E /* MarvelComics.swift in Sources */,
 				B34D5EC3261D987800D6F3B9 /* SceneDelegate.swift in Sources */,

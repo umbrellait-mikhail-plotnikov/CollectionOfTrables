@@ -15,12 +15,12 @@ class GridViewCell: UITableViewCell {
     
     var viewModel: GridViewModelProtocol?  {
         didSet {
-            if (viewModel?.data.value as? [Thumbnail]) != nil {
+            if (viewModel?.data.value as? [URL]) != nil {
                 collectionView.register(UINib(nibName: "ImageViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageViewCell")
                 
-                viewModel!.data.bind(to: collectionView.rx.items(cellIdentifier: "ImageViewCell", cellType: ImageViewCell.self)) { index, image, cell in
+                viewModel!.data.bind(to: collectionView.rx.items(cellIdentifier: "ImageViewCell", cellType: ImageViewCell.self)) { index, imageURL, cell in
                     
-                    cell.image = String(index)
+                    cell.imageURL = imageURL as? URL
                 
                 }.disposed(by: disposedBag)
             }

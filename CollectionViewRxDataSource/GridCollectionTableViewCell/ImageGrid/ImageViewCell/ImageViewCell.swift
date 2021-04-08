@@ -6,16 +6,17 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImageViewCell: UICollectionViewCell {
 
-    var image: String! {
+    var imageURL: URL! {
         didSet {
-            label.text = image
-            
+            image.kf.setImage(with: imageURL)
         }
     }
-    @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var image: UIImageView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
