@@ -28,6 +28,15 @@ class ViewController: UIViewController {
             .bind(to: tableView.rx.items(dataSource: viewModel!.dataSource))
             .disposed(by: disposeBag)
         
+        tableView.rx.contentOffset
+            .map { $0.y >= self.tableView.contentSize.height - self.tableView.frame.height - 200 }
+            .map { $0 && self.tableView.contentOffset.y != 0 }
+            .distinctUntilChanged()
+            .subscribe(onNext: {
+                if $0 { self.viewModel?.getCreators(limit: 10) }
+            })
+            .disposed(by: disposeBag)
+        
     }
 }
 

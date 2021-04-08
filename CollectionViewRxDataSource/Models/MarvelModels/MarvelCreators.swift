@@ -8,6 +8,11 @@
 import Foundation
 import ObjectMapper
 
+struct Creator {
+    let name: String
+    let thumbnail: Thumbnail
+}
+
 struct MarvelCreators: Mappable, MarvelModel {
     
     init?(map: Map) {
@@ -18,14 +23,11 @@ struct MarvelCreators: Mappable, MarvelModel {
         results <- map["data.results"]
     }
     
-    var fullNames = [String]()
-    var thumbnails = [Thumbnail]()
+    var creators: [Creator] = []
     
     var results: [[String: Any]]? {
         didSet {
             guard let results = results else {return}
-            fullNames = []
-            thumbnails = []
             for result in results {
                 guard let fullName = result["fullName"] as? String,
                       let temp = result["thumbnail"] as? [String: String],
@@ -33,9 +35,8 @@ struct MarvelCreators: Mappable, MarvelModel {
                       let ext = temp["extension"] else {fatalError()}
                 
                 let thumbnail = Thumbnail(path: path, ext: ext)
-                
-                fullNames.append(fullName)
-                thumbnails.append(thumbnail)
+                let creator = Creator(name: fullName, thumbnail: thumbnail)
+                creators.append(creator)
             }
         }
     }

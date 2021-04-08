@@ -9,9 +9,9 @@ import UIKit
 
 class ComicsViewCell: UICollectionViewCell {
 
-    var comics: String! {
+    var comics: Comics! {
         didSet {
-            label.text = comics
+            label.text = comics.title
         }
     }
     

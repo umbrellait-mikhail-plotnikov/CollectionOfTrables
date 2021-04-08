@@ -8,6 +8,12 @@
 import Foundation
 import ObjectMapper
 
+struct Comics {
+    let title: String
+    let thumbnail: Thumbnail
+    
+}
+
 struct MarvelComics: Mappable, MarvelModel {
     
     init?(map: Map) {
@@ -18,14 +24,11 @@ struct MarvelComics: Mappable, MarvelModel {
         results <- map["data.results"]
     }
     
-    var titles = [String]()
-    var thumbnails = [Thumbnail]()
+    var comics: [Comics] = []
     
     var results: [[String: Any]]? {
         didSet {
             guard let results = results else {return}
-            titles = []
-            thumbnails = []
             for result in results {
                 guard let title = result["title"] as? String,
                       let temp = result["thumbnail"] as? [String: String],
@@ -33,9 +36,9 @@ struct MarvelComics: Mappable, MarvelModel {
                       let ext = temp["extension"] else {fatalError()}
                 
                 let thumbnail = Thumbnail(path: path, ext: ext)
+                let comics = Comics(title: title, thumbnail: thumbnail)
                 
-                titles.append(title)
-                thumbnails.append(thumbnail)
+                self.comics.append(comics)
             }
         }
     }

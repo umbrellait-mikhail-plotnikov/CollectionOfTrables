@@ -18,10 +18,10 @@ struct MainDataSource {
             switch dataSource[indexPath] {
             case let .GridTableViewItem(items):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "GridCell", for: indexPath) as? GridViewCell else { fatalError() }
-                if let images = items as? [URL] {
-                    cell.viewModel = ImageGridViewModel(imagesURL: images)
-                } else if let comicsTitle = items as? [String] {
-                    cell.viewModel = ComicsGridViewModel(comicsTitle: comicsTitle)
+                if let images = items as? [Character] {
+                    cell.viewModel = ImageGridViewModel(characters: images)
+                } else if let comicsTitle = items as? [Comics] {
+                    cell.viewModel = ComicsGridViewModel(comics: comicsTitle)
                 } else {fatalError("Unknown title")}
                 
                 return cell

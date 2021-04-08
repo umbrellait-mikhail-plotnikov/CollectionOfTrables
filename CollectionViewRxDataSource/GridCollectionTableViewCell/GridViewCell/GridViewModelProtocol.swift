@@ -9,5 +9,6 @@ import Foundation
 import RxCocoa
 
 protocol GridViewModelProtocol {
+    func getNewItems(limit: Int) 
     var data: BehaviorRelay<[Any]> {get}
 }

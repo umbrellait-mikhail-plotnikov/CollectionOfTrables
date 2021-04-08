@@ -17,6 +17,11 @@ struct Thumbnail {
     }
 }
 
+struct Character {
+    let name: String
+    let thumbnail: Thumbnail
+}
+
 struct MarvelCharacters: Mappable, MarvelModel {
     
     init?(map: Map) {
@@ -27,14 +32,11 @@ struct MarvelCharacters: Mappable, MarvelModel {
         results <- map["data.results"]
     }
     
-    var names = [String]()
-    var thumbnails = [Thumbnail]()
+    var characters: [Character] = []
     
     var results: [[String: Any]]? {
         didSet {
             guard let results = results else {return}
-            names = []
-            thumbnails = []
             for result in results {
                 guard let name = result["name"] as? String,
                       let temp = result["thumbnail"] as? [String: String],
@@ -42,9 +44,9 @@ struct MarvelCharacters: Mappable, MarvelModel {
                       let ext = temp["extension"] else {fatalError()}
                 
                 let thumbnail = Thumbnail(path: path, ext: ext)
+                let character = Character(name: name, thumbnail: thumbnail)
                 
-                names.append(name)
-                thumbnails.append(thumbnail)
+                characters.append(character)
             }
         }
     }

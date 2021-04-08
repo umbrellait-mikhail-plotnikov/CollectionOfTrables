@@ -10,9 +10,9 @@ import Kingfisher
 
 class ImageViewCell: UICollectionViewCell {
 
-    var imageURL: URL! {
+    var character: Character! {
         didSet {
-            image.kf.setImage(with: imageURL)
+            image.kf.setImage(with: URL(string: character.thumbnail.toString()))
         }
     }
     
