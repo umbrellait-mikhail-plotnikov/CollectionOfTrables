@@ -1,5 +1,5 @@
 //
-//  MarvelCreators.swift
+//  MarvelComics.swift
 //  CollectionViewRxDataSource
 //
 //  Created by Mikhail Plotnikov on 07.04.2021.
@@ -8,12 +8,7 @@
 import Foundation
 import ObjectMapper
 
-struct MarvelCreators: Mappable, MarvelModel {
-    
-    struct Thumbnail {
-        var path: String!
-        var ext: String!
-    }
+struct MarvelComics: Mappable, MarvelModel {
     
     init?(map: Map) {
         
@@ -23,27 +18,25 @@ struct MarvelCreators: Mappable, MarvelModel {
         results <- map["data.results"]
     }
     
-    var fullNames = [String]()
+    var titles = [String]()
     var thumbnails = [Thumbnail]()
     
     var results: [[String: Any]]? {
         didSet {
             guard let results = results else {return}
-            fullNames = []
+            titles = []
             thumbnails = []
             for result in results {
-                guard let fullName = result["fullName"] as? String,
+                guard let title = result["title"] as? String,
                       let temp = result["thumbnail"] as? [String: String],
                       let path = temp["path"],
                       let ext = temp["extension"] else {fatalError()}
                 
                 let thumbnail = Thumbnail(path: path, ext: ext)
                 
-                fullNames.append(fullName)
+                titles.append(title)
                 thumbnails.append(thumbnail)
             }
-            print(fullNames)
-            print(thumbnails)
         }
     }
 }

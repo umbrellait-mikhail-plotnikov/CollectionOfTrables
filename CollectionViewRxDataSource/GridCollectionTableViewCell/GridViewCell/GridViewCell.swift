@@ -15,10 +15,10 @@ class GridViewCell: UITableViewCell {
     
     var viewModel: GridViewModelProtocol?  {
         didSet {
-            if (viewModel?.data.value as? [UIImage]) != nil {
+            if (viewModel?.data.value as? [Thumbnail]) != nil {
                 collectionView.register(UINib(nibName: "ImageViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageViewCell")
                 
-                viewModel!.data.bind(to: collectionView.rx.items(cellIdentifier: "ImageViewCell", cellType: ImageViewCell.self)) { index, title, cell in
+                viewModel!.data.bind(to: collectionView.rx.items(cellIdentifier: "ImageViewCell", cellType: ImageViewCell.self)) { index, image, cell in
                     
                     cell.image = String(index)
                 
@@ -27,9 +27,9 @@ class GridViewCell: UITableViewCell {
             else if (viewModel?.data.value as? [String]) != nil {
                 collectionView.register(UINib(nibName: "ComicsViewCell", bundle: nil), forCellWithReuseIdentifier: "ComicsViewCell")
                 
-                viewModel!.data.bind(to: collectionView.rx.items(cellIdentifier: "ComicsViewCell", cellType: ComicsViewCell.self)) { index, title, cell in
+                viewModel!.data.bind(to: collectionView.rx.items(cellIdentifier: "ComicsViewCell", cellType: ComicsViewCell.self)) { index, comicsTitle, cell in
                     
-                    cell.comics = title as? String
+                    cell.comics = comicsTitle as? String
                     
                 }.disposed(by: disposedBag)
             }

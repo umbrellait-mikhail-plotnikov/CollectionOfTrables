@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let disposeBag = DisposeBag()
-    var viewModel: ViewModel?
+    var viewModel: MainViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "GridViewCell", bundle: nil), forCellReuseIdentifier: "GridCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        viewModel = ViewModel()
+        viewModel = MainViewModel(api: MarvelAPIProvider.shared)
         
         viewModel?.items
             .bind(to: tableView.rx.items(dataSource: viewModel!.dataSource))
