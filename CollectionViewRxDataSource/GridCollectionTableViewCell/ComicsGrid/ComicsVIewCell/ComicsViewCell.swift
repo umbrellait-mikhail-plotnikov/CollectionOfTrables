@@ -15,10 +15,11 @@ class ComicsViewCell: UICollectionViewCell {
     var comics: Comics! {
         didSet {
             label.text = comics.title
-            label.sizeToFit()
-            print(label.text ,label.bounds.size.width)
-            let size = CGSize(width: label.bounds.size.width + 25, height: label.bounds.size.height + 25)
-            colorView.bounds.size = size
+            colorView.layer.cornerRadius = 10
+//            label.sizeToFit()
+//            print(label.text ,label.bounds.size.width)
+//            let size = CGSize(width: label.bounds.size.width + 25, height: label.bounds.size.height + 25)
+//            colorView.bounds.size = size
         }
     }
     
@@ -35,4 +36,13 @@ class ComicsViewCell: UICollectionViewCell {
         // Initialization code
     }
 
+}
+
+extension String {
+    func width(height: CGFloat, font: UIFont = .systemFont(ofSize: 17)) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+
+        return ceil(boundingBox.width)
+    }
 }

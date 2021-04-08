@@ -14,7 +14,7 @@ struct ImageGridViewModel: GridViewModelProtocol {
     private let disposedBag = DisposeBag()
     
     func getNewItems(limit: Int) {
-        MarvelAPIProvider.shared.getCharacters(limit: 50, offset: data.value.count)
+        MarvelAPIProvider.shared.getCharacters(limit: 25, offset: data.value.count)
             .map { $0.characters }
             .subscribe(onNext: {
                 self.data.accept(self.data.value + $0)

@@ -13,6 +13,7 @@ class ImageViewCell: UICollectionViewCell {
     var character: Character! {
         didSet {
             image.kf.setImage(with: URL(string: character.thumbnail.toString()))
+            image.layer.cornerRadius = 10
         }
     }
     

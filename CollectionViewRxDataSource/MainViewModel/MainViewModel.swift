@@ -30,31 +30,50 @@ class MainViewModel {
     
     let dataSource = MainDataSource.dataSource()
     
-    func getCreators(limit: Int) {
-        self.api.getCreators(limit: 10, offset: creators.value.count)
+    func reloadData(closure: @escaping () -> () = {}) {
+        characters.accept([])
+        comics.accept([])
+        creators.accept([])
+        getCharcters()
+        getCreators()
+        getComics()
+        closure()
+    }
+    
+    func getCreators(limit: Int = 10, offset: Int? = nil) {
+        var newOffset = creators.value.count
+        if offset != nil { newOffset = offset! }
+        self.api.getCreators(limit: limit, offset: newOffset)
             .map { $0.creators }
             .subscribe(onNext: {
                 self.creators.accept(self.creators.value + $0)
             }).disposed(by: diposedBag)
     }
     
-    init(api: MarvelAPIProvider) {
-        self.api = api
-        
-        api.getCharacters(limit: 50, offset: characters.value.count)
+    func getCharcters(limit: Int = 25, offset: Int? = nil) {
+        var newOffset = creators.value.count
+        if offset != nil { newOffset = offset! }
+        api.getCharacters(limit: limit, offset: newOffset)
             .map { $0.characters }
             .bind(to: characters)
             .disposed(by: diposedBag)
-            
-        api.getCreators(limit: 10, offset: creators.value.count)
-            .map { $0.creators }
-            .bind(to: creators)
-            .disposed(by: diposedBag)
-        
-        api.getComics(limit: 50, offset: comics.value.count)
+    }
+    
+    func getComics(limit: Int = 10, offset: Int? = nil) {
+        var newOffset = creators.value.count
+        if offset != nil { newOffset = offset! }
+        api.getComics(limit: limit, offset: newOffset)
             .map { $0.comics }
             .bind(to: comics)
             .disposed(by: diposedBag)
+    }
+    
+    init(api: MarvelAPIProvider) {
+        self.api = api
+        
+        getCharcters()
+        getComics()
+        getCreators()
         
         Observable.combineLatest(characters, comics, creators)
             .subscribe(onNext: { (characters, comics, creators) in
