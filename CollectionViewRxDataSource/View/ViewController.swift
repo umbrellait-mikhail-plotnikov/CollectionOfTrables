@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     
     private func bindTableView(tableView: UITableView) {
         viewModel?.items
-            .bind(to: tableView.rx.items(dataSource: viewModel!.dataSource))
+            .drive(tableView.rx.items(dataSource: viewModel!.dataSource))
             .disposed(by: disposeBag)
         tableView.rx.contentOffset
             .map { $0.y >= tableView.contentSize.height - tableView.frame.height - 200 }

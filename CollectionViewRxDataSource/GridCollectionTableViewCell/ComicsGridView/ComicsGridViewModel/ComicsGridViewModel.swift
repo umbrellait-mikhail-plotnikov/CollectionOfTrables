@@ -27,7 +27,12 @@ extension ComicsSection: SectionModelType {
 struct ComicsGridViewModel: GridViewModelProtocol {
     
     private let disposedBag = DisposeBag()
+    private let _comics = BehaviorRelay<[ComicsSection]>(value: [])
+    var comics: Driver<[ComicsSection]> {
+        return _comics.asDriver()
+    }
     
+    let data = BehaviorRelay<[Any]>(value: [])
     let dataSource = RxCollectionViewSectionedReloadDataSource<ComicsSection>(configureCell: { dataSource, collectionView, indexPath, element in
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ComicsViewCell", for: indexPath) as! ComicsViewCell
@@ -43,17 +48,14 @@ struct ComicsGridViewModel: GridViewModelProtocol {
             .map { $0.comics }
             .subscribe(onNext: {
                 self.data.accept(self.data.value + $0)
-                self.comics.accept([ComicsSection(header: "Comics", items: self.data.value as! [Comics])])
+                self._comics.accept([ComicsSection(header: "Comics", items: self.data.value as! [Comics])])
                 closure()
             }).disposed(by: disposedBag)
     }
     
-    var comics = BehaviorRelay<[ComicsSection]>(value: [])
-    let data = BehaviorRelay<[Any]>(value: [])
-    
     init(comics: [Comics]) {
         self.data.accept(comics)
-        self.comics.accept([ComicsSection(header: "Comics", items: comics)])
+        self._comics.accept([ComicsSection(header: "Comics", items: comics)])
         //self.comics = comics
     }
 }

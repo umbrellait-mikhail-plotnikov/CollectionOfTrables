@@ -32,7 +32,7 @@ class GridViewCell: UITableViewCell {
                 guard let self = self else { return UICollectionReusableView() }
                 return self.setupFooterGridView(indexPath: indexPath, type: .Character)
             }
-            viewModel.characters.bind(to: collectionView.rx.items(dataSource: viewModel.dataSource))
+            viewModel.characters.drive(collectionView.rx.items(dataSource: viewModel.dataSource))
                 .disposed(by: disposedBag)
             
         } else if type == .Comics {
@@ -44,7 +44,7 @@ class GridViewCell: UITableViewCell {
                 guard let self = self else { return UICollectionReusableView() }
                 return self.setupFooterGridView(indexPath: indexPath, type: .Comics)
             }
-            viewModel.comics.bind(to: collectionView.rx.items(dataSource: viewModel.dataSource))
+            viewModel.comics.drive(collectionView.rx.items(dataSource: viewModel.dataSource))
                 .disposed(by: disposedBag)
             
             collectionView.rx.setDelegate(self).disposed(by: disposedBag)

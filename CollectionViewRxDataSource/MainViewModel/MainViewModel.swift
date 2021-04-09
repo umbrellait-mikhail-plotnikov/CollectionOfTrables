@@ -19,11 +19,15 @@ class MainViewModel {
     private var comics = BehaviorRelay<[Comics]>(value: [])
     private var creators = BehaviorRelay<[Creator]>(value: [])
     
-    let items = BehaviorRelay<[TableViewSection]>(value: [
+    private let _items = BehaviorRelay<[TableViewSection]>(value: [
         .GridSection(items: []),
         .GridSection(items: []),
         .CustomSection(items: [])
     ])
+    
+    var items: Driver<[TableViewSection]> {
+        return _items.asDriver()
+    }
     
     let dataSource = MainDataSource.dataSource()
     
@@ -74,7 +78,7 @@ class MainViewModel {
         
         Observable.combineLatest(characters, comics, creators)
             .subscribe(onNext: { (characters, comics, creators) in
-                var newValue = self.items.value
+                var newValue = self._items.value
                 
                 var newArray: [TableViewItem] = []
                 for i in creators {
@@ -85,7 +89,7 @@ class MainViewModel {
                 newValue[1] = .GridSection(items: [.GridTableViewItem(items: comics)])
                 newValue[2] = .CustomSection(items: newArray)
                 
-                self.items.accept(newValue)
+                self._items.accept(newValue)
             }).disposed(by: diposedBag) 
     }
 }

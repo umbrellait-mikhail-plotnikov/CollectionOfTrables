@@ -27,7 +27,12 @@ extension ImageSection: SectionModelType {
 struct ImageGridViewModel: GridViewModelProtocol {
     
     private let disposedBag = DisposeBag()
+    let _characters = BehaviorRelay<[ImageSection]>(value: [])
+    var characters: Driver<[ImageSection]> {
+        return _characters.asDriver()
+    }
     
+    let data = BehaviorRelay<[Any]>(value: [])
     let dataSource = RxCollectionViewSectionedReloadDataSource<ImageSection>(configureCell: { dataSource, collectionView, indexPath, element in
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageViewCell", for: indexPath) as! ImageViewCell
@@ -43,16 +48,13 @@ struct ImageGridViewModel: GridViewModelProtocol {
             .map { $0.characters }
             .subscribe(onNext: {
                 self.data.accept(self.data.value + $0)
-                self.characters.accept([ImageSection(header: "Image Section", items: self.data.value as! [Character])])
+                self._characters.accept([ImageSection(header: "Image Section", items: self.data.value as! [Character])])
                 closure()
             }).disposed(by: disposedBag)
     }
     
-    var characters = BehaviorRelay<[ImageSection]>(value: [])
-    let data = BehaviorRelay<[Any]>(value: [])
-    
     init(characters: [Character]) {
         self.data.accept(characters)
-        self.characters.accept([ImageSection(header: "Image Section", items: characters)])
+        self._characters.accept([ImageSection(header: "Image Section", items: characters)])
     }
 }
