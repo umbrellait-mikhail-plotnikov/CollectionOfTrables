@@ -26,7 +26,7 @@ struct MarvelComics: Mappable, MarvelModel {
     
     var comics: [Comics] = []
     
-    var results: [[String: Any]]? {
+    private var results: [[String: Any]]? {
         didSet {
             guard let results = results else {return}
             for result in results {

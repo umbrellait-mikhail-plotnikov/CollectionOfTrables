@@ -20,12 +20,9 @@ class MainViewModel {
     private var creators = BehaviorRelay<[Creator]>(value: [])
     
     let items = BehaviorRelay<[TableViewSection]>(value: [
-        .GridSection(items: [
-        ]),
-        .GridSection(items: [
-        ]),
-        .CustomSection(items: [
-        ])
+        .GridSection(items: []),
+        .GridSection(items: []),
+        .CustomSection(items: [])
     ])
     
     let dataSource = MainDataSource.dataSource()
@@ -88,10 +85,8 @@ class MainViewModel {
                 newValue[1] = .GridSection(items: [.GridTableViewItem(items: comics)])
                 newValue[2] = .CustomSection(items: newArray)
                 
-                
                 self.items.accept(newValue)
-            }).disposed(by: diposedBag)
-        
+            }).disposed(by: diposedBag) 
     }
 }
 

@@ -25,7 +25,7 @@ struct MarvelCreators: Mappable, MarvelModel {
     
     var creators: [Creator] = []
     
-    var results: [[String: Any]]? {
+    private var results: [[String: Any]]? {
         didSet {
             guard let results = results else {return}
             for result in results {

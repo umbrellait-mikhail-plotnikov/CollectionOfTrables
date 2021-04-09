@@ -7,8 +7,10 @@
 
 import Foundation
 import RxCocoa
+import RxDataSources
 
 protocol GridViewModelProtocol {
-    func getNewItems(limit: Int) 
+    func getNewItems(limit: Int, closure: @escaping () -> ()) 
     var data: BehaviorRelay<[Any]> {get}
+    
 }

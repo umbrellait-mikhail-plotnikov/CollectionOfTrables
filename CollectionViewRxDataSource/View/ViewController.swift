@@ -12,59 +12,80 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let spinner = UIActivityIndicatorView(style: .medium)
-    let refreshController = UIRefreshControl()
+    private let spinner = UIActivityIndicatorView(style: .medium)
+    private let refreshController = UIRefreshControl()
+    private let disposeBag = DisposeBag()
     
-    let disposeBag = DisposeBag()
-    var viewModel: MainViewModel?
+    private let viewModel: MainViewModel?
     
-    @objc func refresh(sender: AnyObject) {
+    @objc
+    private func refresh(sender: AnyObject) {
         viewModel?.reloadData() {
             self.refreshController.endRefreshing()
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    private func setupUI() {
         self.refreshController.attributedTitle = NSAttributedString(string: "WIPE DATA... AHAHHAHAH")
         self.refreshController.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshController
         
         spinner.color = .darkGray
         spinner.hidesWhenStopped = true
         spinner.startAnimating()
         tableView.tableFooterView = spinner
         tableView.tableFooterView?.isHidden = false
-        
-        
-        tableView.refreshControl = refreshController
-        
+    }
+    
+    private func registerCells() {
         tableView.register(UINib(nibName: "GridViewCell", bundle: nil), forCellReuseIdentifier: "GridCell")
         tableView.register(UINib(nibName: "CreatorViewCell", bundle: nil), forCellReuseIdentifier: "CreatorViewCell")
+    }
+    
+    private func updateVisibleFooter(status: Bool) {
+        self.tableView.tableFooterView?.isHidden = !status
         
-        viewModel = MainViewModel(api: MarvelAPIProvider.shared)
-        
+        if self.tableView.contentOffset.y < 100 {
+            self.tableView.tableFooterView?.isHidden = false
+        }
+    }
+    
+    private func bindTableView(tableView: UITableView) {
         viewModel?.items
             .bind(to: tableView.rx.items(dataSource: viewModel!.dataSource))
             .disposed(by: disposeBag)
-        
         tableView.rx.contentOffset
-            .map { $0.y >= self.tableView.contentSize.height - self.tableView.frame.height - 200 }
-            .map { $0 && self.tableView.contentOffset.y > 100 }
+            .map { $0.y >= tableView.contentSize.height - tableView.frame.height - 200 }
+            .map { $0 && tableView.contentOffset.y > 100 }
             .distinctUntilChanged()
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
                 if $0 {
-                    self.viewModel?.getCreators(limit: 10)
+                    self?.viewModel?.getCreators(limit: 10)
                 }
-                self.tableView.tableFooterView?.isHidden = !$0
-                
-                if self.tableView.contentOffset.y < 100 {
-                    self.tableView.tableFooterView?.isHidden = false
-                }
+                self?.updateVisibleFooter(status: $0)
             })
             .disposed(by: disposeBag)
         
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        registerCells()
+        setupUI()
+        bindTableView(tableView: tableView)
+        
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        viewModel = MainViewModel(api: MarvelAPIProvider.shared)
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        viewModel = MainViewModel(api: MarvelAPIProvider.shared)
+        super.init(coder: coder)
     }
 }
 

@@ -23,7 +23,6 @@ final class MarvelAPIProvider: APIProviderProtocol {
     private var keys: APIKey?
     private let marvelBaseURL = "https://gateway.marvel.com/v1/public"
     
-    
     public func getCharacters(limit: Int, offset: Int) -> Observable<MarvelCharacters> {
         
         let subPath = "/characters"

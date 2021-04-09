@@ -38,6 +38,8 @@
 		B34DE7A3261DE77A00D8176E /* MarvelModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE7A2261DE77A00D8176E /* MarvelModelProtocol.swift */; };
 		B34DE7A6261DE78C00D8176E /* MarvelCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE7A5261DE78C00D8176E /* MarvelCreators.swift */; };
 		B34DE7B4261E08FF00D8176E /* APIProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */; };
+		B37D77A226203D6A0005DD38 /* FooterGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D77A026203D6A0005DD38 /* FooterGridView.swift */; };
+		B37D77A326203D6A0005DD38 /* FooterGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37D77A126203D6A0005DD38 /* FooterGridView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		B34DE7A2261DE77A00D8176E /* MarvelModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelModelProtocol.swift; sourceTree = "<group>"; };
 		B34DE7A5261DE78C00D8176E /* MarvelCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCreators.swift; sourceTree = "<group>"; };
 		B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProviderProtocol.swift; sourceTree = "<group>"; };
+		B37D77A026203D6A0005DD38 /* FooterGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterGridView.swift; sourceTree = "<group>"; };
+		B37D77A126203D6A0005DD38 /* FooterGridView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterGridView.xib; sourceTree = "<group>"; };
 		E6B03D91AC39DBD35FB06ACC /* Pods_CollectionViewRxDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollectionViewRxDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -132,23 +136,22 @@
 			path = ImageGridViewModel;
 			sourceTree = "<group>";
 		};
-		B3490058261ED7F700E75B07 /* GridViewCell */ = {
+		B3490058261ED7F700E75B07 /* GridView */ = {
 			isa = PBXGroup;
 			children = (
 				B3490080261EE0DB00E75B07 /* GridViewModelProtocol.swift */,
-				B34D5ED5261D990800D6F3B9 /* GridViewCell.swift */,
-				B34D5ED6261D990800D6F3B9 /* GridViewCell.xib */,
+				B37D77A726204BC90005DD38 /* GridViewCell */,
 			);
-			path = GridViewCell;
+			path = GridView;
 			sourceTree = "<group>";
 		};
-		B349005A261ED86900E75B07 /* ImageGrid */ = {
+		B349005A261ED86900E75B07 /* ImageGridView */ = {
 			isa = PBXGroup;
 			children = (
 				B3490056261ED54C00E75B07 /* ImageGridViewModel */,
 				B31D952B261D9F8600AAB8F9 /* ImageViewCell */,
 			);
-			path = ImageGrid;
+			path = ImageGridView;
 			sourceTree = "<group>";
 		};
 		B349007A261EDFF400E75B07 /* ComicsGridViewModel */ = {
@@ -159,13 +162,13 @@
 			path = ComicsGridViewModel;
 			sourceTree = "<group>";
 		};
-		B349007F261EE0B500E75B07 /* ComicsGrid */ = {
+		B349007F261EE0B500E75B07 /* ComicsGridView */ = {
 			isa = PBXGroup;
 			children = (
 				B349007A261EDFF400E75B07 /* ComicsGridViewModel */,
 				B3490088261EE6A500E75B07 /* ComicsVIewCell */,
 			);
-			path = ComicsGrid;
+			path = ComicsGridView;
 			sourceTree = "<group>";
 		};
 		B3490088261EE6A500E75B07 /* ComicsVIewCell */ = {
@@ -248,9 +251,9 @@
 		B34D5EDA261D990E00D6F3B9 /* GridCollectionTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				B3490058261ED7F700E75B07 /* GridViewCell */,
-				B349007F261EE0B500E75B07 /* ComicsGrid */,
-				B349005A261ED86900E75B07 /* ImageGrid */,
+				B3490058261ED7F700E75B07 /* GridView */,
+				B349007F261EE0B500E75B07 /* ComicsGridView */,
+				B349005A261ED86900E75B07 /* ImageGridView */,
 			);
 			path = GridCollectionTableViewCell;
 			sourceTree = "<group>";
@@ -289,6 +292,25 @@
 				B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */,
 			);
 			path = MarvelAPIProvider;
+			sourceTree = "<group>";
+		};
+		B37D77A526203D7C0005DD38 /* FooterGridView */ = {
+			isa = PBXGroup;
+			children = (
+				B37D77A026203D6A0005DD38 /* FooterGridView.swift */,
+				B37D77A126203D6A0005DD38 /* FooterGridView.xib */,
+			);
+			path = FooterGridView;
+			sourceTree = "<group>";
+		};
+		B37D77A726204BC90005DD38 /* GridViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B37D77A526203D7C0005DD38 /* FooterGridView */,
+				B34D5ED5261D990800D6F3B9 /* GridViewCell.swift */,
+				B34D5ED6261D990800D6F3B9 /* GridViewCell.xib */,
+			);
+			path = GridViewCell;
 			sourceTree = "<group>";
 		};
 		CF45DEF8E6E31D8B9B35AC31 /* Frameworks */ = {
@@ -361,6 +383,7 @@
 				B34D5ECD261D987A00D6F3B9 /* LaunchScreen.storyboard in Resources */,
 				B34D5ED8261D990800D6F3B9 /* GridViewCell.xib in Resources */,
 				B3490086261EE69C00E75B07 /* ComicsViewCell.xib in Resources */,
+				B37D77A326203D6A0005DD38 /* FooterGridView.xib in Resources */,
 				B34DE794261DD7E300D8176E /* keys.plist in Resources */,
 				B31D9529261D9F8200AAB8F9 /* ImageViewCell.xib in Resources */,
 				B34D5ECA261D987A00D6F3B9 /* Assets.xcassets in Resources */,
@@ -423,6 +446,7 @@
 				B34DE7A3261DE77A00D8176E /* MarvelModelProtocol.swift in Sources */,
 				B3490052261ED3CE00E75B07 /* ImageGridViewModel.swift in Sources */,
 				B34D5EC5261D987800D6F3B9 /* ViewController.swift in Sources */,
+				B37D77A226203D6A0005DD38 /* FooterGridView.swift in Sources */,
 				B349009E261EEACE00E75B07 /* IdentifiableTypeProtocol.swift in Sources */,
 				B34D5ED7261D990800D6F3B9 /* GridViewCell.swift in Sources */,
 				B34DE7B4261E08FF00D8176E /* APIProviderProtocol.swift in Sources */,

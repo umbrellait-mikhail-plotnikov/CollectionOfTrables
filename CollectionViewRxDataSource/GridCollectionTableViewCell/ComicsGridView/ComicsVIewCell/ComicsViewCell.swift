@@ -16,10 +16,6 @@ class ComicsViewCell: UICollectionViewCell {
         didSet {
             label.text = comics.title
             colorView.layer.cornerRadius = 10
-//            label.sizeToFit()
-//            print(label.text ,label.bounds.size.width)
-//            let size = CGSize(width: label.bounds.size.width + 25, height: label.bounds.size.height + 25)
-//            colorView.bounds.size = size
         }
     }
     
