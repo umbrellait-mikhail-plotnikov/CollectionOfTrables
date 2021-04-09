@@ -103,20 +103,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		B31D9515261D9C0300AAB8F9 /* View */ = {
+		B31D9515261D9C0300AAB8F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B34D5EC4261D987800D6F3B9 /* ViewController.swift */,
+				B34900AC261F0ECB00E75B07 /* CreatorViewCell */,
+				B37D77AA262069A10005DD38 /* MainViewController */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		B31D951A261D9C1500AAB8F9 /* MainViewModel */ = {
+		B31D951A261D9C1500AAB8F9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				B31D9517261D9C1100AAB8F9 /* MainViewModel.swift */,
 			);
-			path = MainViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B31D952B261D9F8600AAB8F9 /* ImageViewCell */ = {
@@ -232,10 +233,7 @@
 			children = (
 				B34D5EC0261D987800D6F3B9 /* AppDelegate.swift */,
 				B34D5EC2261D987800D6F3B9 /* SceneDelegate.swift */,
-				B3490096261EEA5500E75B07 /* Models */,
-				B31D951A261D9C1500AAB8F9 /* MainViewModel */,
-				B31D9515261D9C0300AAB8F9 /* View */,
-				B34900AC261F0ECB00E75B07 /* CreatorViewCell */,
+				B37D77AD262069C20005DD38 /* MainScreen */,
 				B34D5EDA261D990E00D6F3B9 /* GridCollectionTableViewCell */,
 				B34DE7AA261DE86700D8176E /* APIProviders */,
 				B34D5EC9261D987A00D6F3B9 /* Assets.xcassets */,
@@ -280,6 +278,7 @@
 		B34DE7AA261DE86700D8176E /* APIProviders */ = {
 			isa = PBXGroup;
 			children = (
+				B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */,
 				B34DE7AC261DE87100D8176E /* MarvelAPIProvider */,
 			);
 			path = APIProviders;
@@ -289,7 +288,6 @@
 			isa = PBXGroup;
 			children = (
 				B34DE77B261DD75200D8176E /* MarvelAPIProvider.swift */,
-				B34DE7B3261E08FF00D8176E /* APIProviderProtocol.swift */,
 			);
 			path = MarvelAPIProvider;
 			sourceTree = "<group>";
@@ -311,6 +309,24 @@
 				B34D5ED6261D990800D6F3B9 /* GridViewCell.xib */,
 			);
 			path = GridViewCell;
+			sourceTree = "<group>";
+		};
+		B37D77AA262069A10005DD38 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B34D5EC4261D987800D6F3B9 /* ViewController.swift */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		B37D77AD262069C20005DD38 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B31D951A261D9C1500AAB8F9 /* ViewModels */,
+				B31D9515261D9C0300AAB8F9 /* Views */,
+				B3490096261EEA5500E75B07 /* Models */,
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		CF45DEF8E6E31D8B9B35AC31 /* Frameworks */ = {
