@@ -15,19 +15,25 @@ class ViewController: UIViewController {
     private let spinner = UIActivityIndicatorView(style: .medium)
     private let refreshController = UIRefreshControl()
     private let disposeBag = DisposeBag()
+    private let viewModel: MainViewModel!
     
-    private let viewModel: MainViewModel?
-    
-    @objc
-    private func refresh(sender: AnyObject) {
+    private func refresh() {
+        var count = 0
         viewModel?.reloadData() {
-            self.refreshController.endRefreshing()
+            count += 1
+            if count == 3 {
+                self.refreshController.endRefreshing()
+            }
         }
     }
     
     private func setupUI() {
-        self.refreshController.attributedTitle = NSAttributedString(string: "WIPE DATA... AHAHHAHAH")
-        self.refreshController.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshController.attributedTitle = NSAttributedString(string: "WIPE DATA... AHAHHAHAH")
+        
+        refreshController.rx.controlEvent(.valueChanged)
+            .subscribe { [weak self] _ in self?.refresh() }
+            .disposed(by: disposeBag)
+        
         tableView.refreshControl = refreshController
         
         spinner.color = .darkGray

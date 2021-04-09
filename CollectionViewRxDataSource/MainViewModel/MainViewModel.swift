@@ -12,7 +12,7 @@ import RxDataSources
 import Foundation
 
 class MainViewModel {
-    private let api: MarvelAPIProvider
+    private let api: APIProviderProtocol
     private let diposedBag = DisposeBag()
     
     private var characters = BehaviorRelay<[Character]>(value: [])
@@ -32,44 +32,57 @@ class MainViewModel {
     let dataSource = MainDataSource.dataSource()
     
     func reloadData(closure: @escaping () -> () = {}) {
+        
         characters.accept([])
         comics.accept([])
         creators.accept([])
-        getCharcters()
-        getCreators()
-        getComics()
-        closure()
+        getCharcters() {
+            closure()
+        }
+        getCreators() {
+            closure()
+        }
+        getComics() {
+            closure()
+        }
     }
     
-    func getCreators(limit: Int = 10, offset: Int? = nil) {
+    func getCreators(limit: Int = 10, offset: Int? = nil, closure: @escaping () -> () = {}) {
         var newOffset = creators.value.count
         if offset != nil { newOffset = offset! }
         self.api.getCreators(limit: limit, offset: newOffset)
             .map { $0.creators }
             .subscribe(onNext: {
                 self.creators.accept(self.creators.value + $0)
+                closure()
             }).disposed(by: diposedBag)
     }
     
-    func getCharcters(limit: Int = 25, offset: Int? = nil) {
+    func getCharcters(limit: Int = 25, offset: Int? = nil, closure: @escaping () -> () = {}) {
         var newOffset = creators.value.count
         if offset != nil { newOffset = offset! }
         api.getCharacters(limit: limit, offset: newOffset)
             .map { $0.characters }
-            .bind(to: characters)
+            .subscribe (onNext: {
+                self.characters.accept($0)
+                closure()
+            })
             .disposed(by: diposedBag)
     }
     
-    func getComics(limit: Int = 10, offset: Int? = nil) {
+    func getComics(limit: Int = 10, offset: Int? = nil, closure: @escaping () -> () = {}) {
         var newOffset = creators.value.count
         if offset != nil { newOffset = offset! }
         api.getComics(limit: limit, offset: newOffset)
             .map { $0.comics }
-            .bind(to: comics)
+            .subscribe (onNext:{
+                self.comics.accept($0)
+                closure()
+            })
             .disposed(by: diposedBag)
     }
     
-    init(api: MarvelAPIProvider) {
+    init(api: APIProviderProtocol) {
         self.api = api
         
         getCharcters()
