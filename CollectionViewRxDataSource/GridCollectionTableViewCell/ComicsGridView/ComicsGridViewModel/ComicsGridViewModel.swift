@@ -25,9 +25,10 @@ extension ComicsSection: SectionModelType {
 }
 
 struct ComicsGridViewModel: GridViewModelProtocol {
-    
+    private let api: MarvelAPIProviderProtocol?
     private let disposedBag = DisposeBag()
     private let _comics = BehaviorRelay<[ComicsSection]>(value: [])
+    
     var comics: Driver<[ComicsSection]> {
         return _comics.asDriver()
     }
@@ -44,16 +45,18 @@ struct ComicsGridViewModel: GridViewModelProtocol {
     })
     
     func getNewItems(limit: Int, closure: @escaping () -> ()) {
-        MarvelAPIProvider.shared.getComics(limit: limit, offset: data.value.count)
+        api?.getComics(limit: limit, offset: data.value.count)
             .map { $0.comics }
-            .subscribe(onNext: {
+            .subscribe(onSuccess: {
                 self.data.accept(self.data.value + $0)
                 self._comics.accept([ComicsSection(header: "Comics", items: self.data.value as! [Comics])])
                 closure()
             }).disposed(by: disposedBag)
+        
     }
     
-    init(comics: [Comics]) {
+    init(comics: [Comics], api: MarvelAPIProviderProtocol) {
+        self.api = api
         self.data.accept(comics)
         self._comics.accept([ComicsSection(header: "Comics", items: comics)])
         //self.comics = comics

@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxDataSources
+import Moya
 
 struct MainDataSource {
     typealias DataSource = RxTableViewSectionedReloadDataSource
@@ -19,9 +20,9 @@ struct MainDataSource {
             case let .GridTableViewItem(items):
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "GridCell", for: indexPath) as? GridViewCell else { fatalError() }
                 if let images = items as? [Character] {
-                    cell.viewModel = ImageGridViewModel(characters: images)
+                    cell.viewModel = ImageGridViewModel(characters: images, api: MarvelService.shared)
                 } else if let comicsTitle = items as? [Comics] {
-                    cell.viewModel = ComicsGridViewModel(comics: comicsTitle)
+                    cell.viewModel = ComicsGridViewModel(comics: comicsTitle, api: MarvelService.shared)
                 } else {fatalError("Unknown title")}
                 
                 return cell

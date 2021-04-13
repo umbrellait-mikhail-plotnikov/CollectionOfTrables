@@ -7,6 +7,9 @@
 import RxSwift
 import RxCocoa
 import UIKit
+import Moya
+import Moya_ObjectMapper
+
 
 class ViewController: UIViewController {
 
@@ -85,12 +88,12 @@ class ViewController: UIViewController {
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        viewModel = MainViewModel(api: MarvelAPIProvider.shared)
+        viewModel = MainViewModel(api: MarvelService.shared)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     required init?(coder: NSCoder) {
-        viewModel = MainViewModel(api: MarvelAPIProvider.shared)
+        viewModel = MainViewModel(api: MarvelService.shared)
         super.init(coder: coder)
     }
 }

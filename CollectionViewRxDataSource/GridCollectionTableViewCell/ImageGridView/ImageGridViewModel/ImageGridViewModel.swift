@@ -25,7 +25,7 @@ extension ImageSection: SectionModelType {
 }
 
 struct ImageGridViewModel: GridViewModelProtocol {
-    
+    private let api: MarvelAPIProviderProtocol?
     private let disposedBag = DisposeBag()
     let _characters = BehaviorRelay<[ImageSection]>(value: [])
     var characters: Driver<[ImageSection]> {
@@ -44,16 +44,17 @@ struct ImageGridViewModel: GridViewModelProtocol {
     })
     
     func getNewItems(limit: Int, closure: @escaping () -> ()) {
-        MarvelAPIProvider.shared.getCharacters(limit: limit, offset: data.value.count)
+        api?.getCharacters(limit: limit, offset: data.value.count)
             .map { $0.characters }
-            .subscribe(onNext: {
+            .subscribe(onSuccess: {
                 self.data.accept(self.data.value + $0)
                 self._characters.accept([ImageSection(header: "Image Section", items: self.data.value as! [Character])])
                 closure()
             }).disposed(by: disposedBag)
     }
     
-    init(characters: [Character]) {
+    init(characters: [Character], api: MarvelAPIProviderProtocol) {
+        self.api = api
         self.data.accept(characters)
         self._characters.accept([ImageSection(header: "Image Section", items: characters)])
     }

@@ -24,9 +24,7 @@ struct Character {
 
 struct MarvelCharacters: Mappable, MarvelModel {
     
-    init?(map: Map) {
-        
-    }
+    init?(map: Map) {}
 
     mutating func mapping(map: Map) {
         results <- map["data.results"]

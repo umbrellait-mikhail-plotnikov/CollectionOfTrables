@@ -12,7 +12,7 @@ import RxDataSources
 import Foundation
 
 class MainViewModel {
-    private let api: APIProviderProtocol
+    private let api: MarvelAPIProviderProtocol
     private let diposedBag = DisposeBag()
     
     private var characters = BehaviorRelay<[Character]>(value: [])
@@ -52,7 +52,7 @@ class MainViewModel {
         if offset != nil { newOffset = offset! }
         self.api.getCreators(limit: limit, offset: newOffset)
             .map { $0.creators }
-            .subscribe(onNext: {
+            .subscribe(onSuccess: {
                 self.creators.accept(self.creators.value + $0)
                 closure()
             }).disposed(by: diposedBag)
@@ -63,7 +63,7 @@ class MainViewModel {
         if offset != nil { newOffset = offset! }
         api.getCharacters(limit: limit, offset: newOffset)
             .map { $0.characters }
-            .subscribe (onNext: {
+            .subscribe(onSuccess: {
                 self.characters.accept($0)
                 closure()
             })
@@ -75,14 +75,14 @@ class MainViewModel {
         if offset != nil { newOffset = offset! }
         api.getComics(limit: limit, offset: newOffset)
             .map { $0.comics }
-            .subscribe (onNext:{
+            .subscribe(onSuccess:{
                 self.comics.accept($0)
                 closure()
             })
             .disposed(by: diposedBag)
     }
     
-    init(api: APIProviderProtocol) {
+    init(api: MarvelAPIProviderProtocol) {
         self.api = api
         
         getCharcters()
